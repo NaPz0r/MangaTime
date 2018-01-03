@@ -1,0 +1,14 @@
+{
+    "name": "naplaptop/manga-time",
+    "authors": [
+        {
+            "name": "NaPz0r",
+            "email": "ncozette@gmail.com"
+        }
+    ],
+    "require": {
+        "silex/silex": "^2.2",
+        "twig/twig": "^2.4",
+        "doctrine/dbal": "^2.6"
+    }
+}
