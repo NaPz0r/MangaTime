@@ -1,25 +1,12 @@
 <?php
 
-$app = new Silex\Application();
-
-$app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/../views',
-    'twig.options' => array('debug' => true)
-));
-
-
-$app->get('/hello/',function() use ($app){
-    return $app['twig']->render('hello.twig',array(
-    'name'=>'t',));
-});
-
-
+// Home page
 $app->get('/', function () {
-    return 'Hello world';
-});
+    require '../src/model.php';
+    $articles = getArticles();
 
-$app->get('/login/', function () {
-    return 'Hello world';
+    ob_start();             // start buffering HTML output
+    require '../views/view.php';
+    $view = ob_get_clean(); // assign HTML output to $view
+    return $view;
 });
-
-$app->run();

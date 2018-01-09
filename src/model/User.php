@@ -1,6 +1,10 @@
 <?php
 
-class Mangas{
+namespace app\model;
+
+use Symfony\Component\Security\Core\User\UserInterface;
+
+class User implements UserInterface {
 
     private $idUser;
     private $mailUser;
@@ -9,8 +13,8 @@ class Mangas{
     private $nameUser;
     private $lastnameUser;
 
-    public function __construct($nameManga){
-        $this->setNameManga($nameManga);        
+    public function __construct($mailUser){
+        $this->setMailUser($mailUser);        
     }
 
      /**
@@ -18,7 +22,7 @@ class Mangas{
     */ 
     public function getIdUser()
     {
-        return $this->$idUser;
+        return $this->idUser;
     }
 
     /**
@@ -38,7 +42,7 @@ class Mangas{
     */ 
     public function getMailUser()
     {
-        return $this->$mailUser;
+        return $this->mailUser;
     }
 
     /**
@@ -58,7 +62,7 @@ class Mangas{
     */ 
     public function getPassUser()
     {
-        return $this->$passUser;
+        return $this->passUser;
     }
 
     /**
@@ -78,7 +82,7 @@ class Mangas{
     */ 
     public function getNicknameUser()
     {
-        return $this->$nicknameUser;
+        return $this->nicknameUser;
     }
 
     /**
@@ -98,7 +102,7 @@ class Mangas{
     */ 
     public function getNameUser()
     {
-        return $this->$nameUser;
+        return $this->nameUser;
     }
 
     /**
@@ -118,7 +122,7 @@ class Mangas{
     */ 
     public function getLastnameUser()
     {
-        return $this->$lastnameUser;
+        return $this->lastnameUser;
     }
 
     /**
@@ -131,5 +135,35 @@ class Mangas{
         $this->lastnameUser = $lastnameUser;
 
         return $this;
+    }
+
+    private $salt;
+    private $role;
+
+    public function getSalt(): string
+    {
+        return $this->salt;
+    }
+
+    public function setSalt($salt){
+        $this->salt = $salt;
+
+        return $this;
+    }
+
+    public function getRoles()
+    {
+        return array($this->getRole());
+    }
+
+    public function setRole($role){
+        $this->role = $role;
+
+        return $this;
+    }
+
+    public function eraseCredentials()
+    {
+        // Notging to do here
     }
 }
