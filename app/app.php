@@ -7,20 +7,10 @@ use Symfony\Component\Debug\ExceptionHandler;
 ErrorHandler::register();
 ExceptionHandler::register();
 
-// Register service providers
+// Register service providers.
 $app->register(new Silex\Provider\DoctrineServiceProvider());
 
-$app->register(new Silex\Provider\TwigServiceProvider(), array(
-  'twig.path' => __DIR__ . '/../templates',
-  'twig.options' => array('debug' => true)
-));
-
-$app->register(new Silex\Provider\DoctrineServiceProvider(), array(
-	'db.options' => array(
-		'driver' => 'pdo_mysql',
-		'host' => 'localhost',
-		'dbname' => 'mangatime',
-		'user' => 'root',
-		'password' => ''
-	)
-));
+// Register services.
+$app['dao.manga'] = function ($app) {
+    return new MangaTime\DAO\MangaDAO($app['db']);
+};

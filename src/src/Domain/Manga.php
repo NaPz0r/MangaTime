@@ -1,6 +1,15 @@
 <?php
 
-class Mangas{
+// // Return all articles
+// function getMangas() {
+//     $bdd = new PDO('mysql:host=localhost;dbname=mangatime;charset=utf8', 'root', '');
+//     $mangas = $bdd->query('select * from mangas order by Id_Manga desc');
+//     return $mangas;
+// }
+
+namespace MangaTime\Domain;
+
+class Manga{
 
     private $idManga;
     private $nameManga;

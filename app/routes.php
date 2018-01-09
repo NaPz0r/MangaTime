@@ -1,25 +1,11 @@
 <?php
 
-$app = new Silex\Application();
+// Home page
+$app->get('/', function () use ($app) {
+    $mangas = $app['dao.manga']->findAll();
 
-$app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/../views',
-    'twig.options' => array('debug' => true)
-));
-
-
-$app->get('/hello/',function() use ($app){
-    return $app['twig']->render('hello.twig',array(
-    'name'=>'t',));
+    ob_start();             // start buffering HTML output
+    require '../views/view.php';
+    $view = ob_get_clean(); // assign HTML output to $view
+    return $view;
 });
-
-
-$app->get('/', function () {
-    return 'Hello world';
-});
-
-$app->get('/login/', function () {
-    return 'Hello world';
-});
-
-$app->run();
