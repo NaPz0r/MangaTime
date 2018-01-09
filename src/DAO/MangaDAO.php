@@ -40,7 +40,7 @@ class MangaDAO
         }
         return $mangas;
     }
-
+    //test
     /**
      * Creates an Article object based on a DB row.
      *
