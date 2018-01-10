@@ -1,0 +1,27 @@
+<!doctype html>
+
+<html>
+{% block head %}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{ asset('/lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/mangatime.css') }}" rel="stylesheet">
+    <title>MangaTime</title>
+</head>
+{% endblock %}
+
+<body>
+    {% block content %} {% endblock %}
+</body>
+
+{% block footer %}
+<footer class="footer">
+    <a href="<a href=" <a href="https://github.com/bpesquet/OC-MicroCMS">https://github.com/bpesquet/OC-MicroCMS</a>"><a href="https://github.com/bpesquet/OC-MicroCMS">https://github.com/bpesquet/OC-MicroCMS</a></a>">MicroCMS</a> is a minimalistic CMS
+    built as a showcase for modern PHP development.
+</footer>
+{% endblock footer %}
+
+</html>
