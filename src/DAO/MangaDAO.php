@@ -36,7 +36,7 @@ class MangaDAO
         $mangas = array();
         foreach ($result as $row) {
             $mangasId = $row['Id_Manga'];
-            $mangas[$mangasId] = $this->buildArticle($row);
+            $mangas[$mangasId] = $this->buildManga($row);
         }
         return $mangas;
     }

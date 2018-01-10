@@ -35,6 +35,10 @@ class ComposerStaticInita377d914677d3ab3ed88dfc6b98d653c
             'Psr\\Log\\' => 8,
             'Psr\\Container\\' => 14,
         ),
+        'M' => 
+        array (
+            'MangaTime\\' => 10,
+        ),
         'D' => 
         array (
             'Doctrine\\Common\\Inflector\\' => 26,
@@ -97,6 +101,10 @@ class ComposerStaticInita377d914677d3ab3ed88dfc6b98d653c
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
+        'MangaTime\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
         'Doctrine\\Common\\Inflector\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
@@ -113,10 +121,6 @@ class ComposerStaticInita377d914677d3ab3ed88dfc6b98d653c
         array (
             0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
         ),
-    );
-
-    public static $fallbackDirsPsr4 = array (
-        0 => __DIR__ . '/../..' . '/src',
     );
 
     public static $prefixesPsr0 = array (
@@ -166,7 +170,6 @@ class ComposerStaticInita377d914677d3ab3ed88dfc6b98d653c
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInita377d914677d3ab3ed88dfc6b98d653c::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInita377d914677d3ab3ed88dfc6b98d653c::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInita377d914677d3ab3ed88dfc6b98d653c::$fallbackDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInita377d914677d3ab3ed88dfc6b98d653c::$prefixesPsr0;
             $loader->classMap = ComposerStaticInita377d914677d3ab3ed88dfc6b98d653c::$classMap;
 

@@ -30,7 +30,7 @@
         {% for manga in mangas %}
         <article>
             <h2>{{ manga.nameManga }}</h2>
-            <p>{{ manga.datePublicationManga }}</p>
+            <p>{{ manga.datePublicationManga|date("Y") }}</p>
             <p>{{ manga.descriptionManga }}</p>
         </article>
         {% endfor %}

@@ -18,9 +18,9 @@ class Manga{
     private $statusManga;
     private $author;
 
-    public function __construct($nameManga){
-        $this->setNameManga($nameManga);        
-    }
+    // public function __construct($nameManga){
+    //     $this->setNameManga($nameManga);        
+    // }
 
     /**
     * Get the value of idManga
