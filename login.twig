@@ -1,0 +1,17 @@
+{% if error %}
+    <div>
+        <strong> L'authentification a échouée </strong>
+    </div>
+
+{% endif %}
+    <div>
+        <form action="{{ path('login_check') }}" method="post">
+            <div class="form-group">
+                <input type="text" name"_username" value="{{ last_username }} placeholder"Entrez votre identifiant" required autofocus>
+                <input type="text" name"_password" value="{{ last_username }} placeholder"Entrez votre mot de passe" required>
+            </div>
+            <div>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </div>
