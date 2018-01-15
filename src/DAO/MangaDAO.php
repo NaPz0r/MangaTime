@@ -5,24 +5,9 @@ namespace MangaTime\DAO;
 use Doctrine\DBAL\Connection;
 use MangaTime\Domain\Manga;
 
-class MangaDAO
+class MangaDAO extends DAO
 {
-    /**
-     * Database connection
-     *
-     * @var \Doctrine\DBAL\Connection
-     */
-    private $db;
-
-    /**
-     * Constructor
-     *
-     * @param \Doctrine\DBAL\Connection The database connection object
-     */
-    public function __construct(Connection $db) {
-        $this->db = $db;
-    }
-
+    
     /**
      * Return a list of all mangas, sorted by date (most recent first).
      *
@@ -30,7 +15,7 @@ class MangaDAO
      */
     public function findAll() {
         $sql = "select * from mangas order by Id_Manga desc";
-        $result = $this->db->fetchAll($sql);
+        $result = $this->getDb()->fetchAll($sql);
         
         // Convert query result to an array of domain objects
         $mangas = array();
@@ -56,5 +41,19 @@ class MangaDAO
         $manga->setStatusManga($row['Status_Manga']);
         $manga->setAuthor($row['Authors_Id_Author']);
         return $manga;
+    }
+
+    public function addManga(Manga $manga){
+        $mangaData = array(
+            'manga_name' => $manga->getNameManga(),
+            'manga_datepublication' => $manga->getDatePublicationManga(),
+            'manga_descriptionmanga' => $manga->getDescriptionManga(),
+            'manga_statusmanga' => $manga->getStatusManga()
+        );
+
+        $this->getDb()->insert('mangas', $mangaData);
+        $id = $this->getDb()->lastInsertId();
+        $manga->setIdManga($id);
+    
     }
 }
