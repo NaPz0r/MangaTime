@@ -31,11 +31,6 @@
         <value>callback</value>
     </constraint>
 
-    <!-- Traverse with boolean default option -->
-    <constraint name="Traverse">
-        false
-    </constraint>
-
     <!-- PROPERTY CONSTRAINTS -->
 
     <property name="firstName">

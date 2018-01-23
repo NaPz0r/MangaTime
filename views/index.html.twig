@@ -1,4 +1,6 @@
-{% extends "layout.html.twig" %} {% block content %}
+{% extends "layout.html.twig" %} 
+
+{% block content %}
 <div class="container">
     <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
         <div class="container">
@@ -21,4 +23,8 @@
         <p>{{ manga.datePublicationManga|date("Y") }}</p>
         <p>{{ manga.descriptionManga }}</p>
     </article>
-    {% endfor %} {% endblock content %} {% block footer %} {% endblock footer %}
+    {% endfor %}
+    <a href="{{ path('test') }}">Clique</a>     
+{% endblock content %} 
+{% block footer %} 
+{% endblock footer %}

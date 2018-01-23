@@ -14,18 +14,12 @@ namespace Symfony\Component\Validator\Tests\Constraints;
 use Symfony\Bridge\PhpUnit\DnsMock;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\EmailValidator;
-use Symfony\Component\Validator\Validation;
 
 /**
  * @group dns-sensitive
  */
 class EmailValidatorTest extends AbstractConstraintValidatorTest
 {
-    protected function getApiVersion()
-    {
-        return Validation::API_VERSION_2_5;
-    }
-
     protected function createValidator()
     {
         return new EmailValidator(false);
@@ -158,33 +152,5 @@ class EmailValidatorTest extends AbstractConstraintValidatorTest
         );
 
         $this->assertNoViolation();
-    }
-
-    /**
-     * @dataProvider provideCheckTypes
-     */
-    public function testEmptyHostIsNotValid($checkType, $violation)
-    {
-        $this->validator->validate(
-            'foo@bar.fr@',
-            new Email(array(
-                'message' => 'myMessage',
-                $checkType => true,
-            ))
-        );
-
-        $this
-            ->buildViolation('myMessage')
-            ->setParameter('{{ value }}', '"foo@bar.fr@"')
-            ->setCode($violation)
-            ->assertRaised();
-    }
-
-    public function provideCheckTypes()
-    {
-        return array(
-            array('checkMX', Email::MX_CHECK_FAILED_ERROR),
-            array('checkHost', Email::HOST_CHECK_FAILED_ERROR),
-        );
     }
 }

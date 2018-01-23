@@ -12,14 +12,14 @@
 namespace Symfony\Component\Validator\Tests\Fixtures;
 
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\ExecutionContextInterface;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * @Symfony\Component\Validator\Tests\Fixtures\ConstraintA
  * @Assert\GroupSequence({"Foo", "Entity"})
  * @Assert\Callback({"Symfony\Component\Validator\Tests\Fixtures\CallbackClass", "callback"})
  */
-class Entity extends EntityParent implements EntityInterfaceB
+class Entity extends EntityParent implements EntityInterface
 {
     /**
      * @Assert\NotNull
@@ -61,10 +61,6 @@ class Entity extends EntityParent implements EntityInterfaceB
     public function getLastName()
     {
         return $this->lastName;
-    }
-
-    public function getValid()
-    {
     }
 
     /**

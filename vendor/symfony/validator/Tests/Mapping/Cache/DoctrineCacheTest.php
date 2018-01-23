@@ -12,10 +12,9 @@
 namespace Symfony\Component\Validator\Tests\Mapping\Cache;
 
 use Doctrine\Common\Cache\ArrayCache;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Mapping\Cache\DoctrineCache;
 
-class DoctrineCacheTest extends TestCase
+class DoctrineCacheTest extends \PHPUnit_Framework_TestCase
 {
     private $cache;
 

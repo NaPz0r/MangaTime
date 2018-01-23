@@ -11,25 +11,24 @@
 
 namespace Symfony\Component\Validator\Tests\Mapping\Loader;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Mapping\Loader\LoaderChain;
 
-class LoaderChainTest extends TestCase
+class LoaderChainTest extends \PHPUnit_Framework_TestCase
 {
     public function testAllLoadersAreCalled()
     {
         $metadata = new ClassMetadata('\stdClass');
 
-        $loader1 = $this->getMockBuilder('Symfony\Component\Validator\Mapping\Loader\LoaderInterface')->getMock();
+        $loader1 = $this->getMock('Symfony\Component\Validator\Mapping\Loader\LoaderInterface');
         $loader1->expects($this->once())
-            ->method('loadClassMetadata')
-            ->with($this->equalTo($metadata));
+                        ->method('loadClassMetadata')
+                        ->with($this->equalTo($metadata));
 
-        $loader2 = $this->getMockBuilder('Symfony\Component\Validator\Mapping\Loader\LoaderInterface')->getMock();
+        $loader2 = $this->getMock('Symfony\Component\Validator\Mapping\Loader\LoaderInterface');
         $loader2->expects($this->once())
-            ->method('loadClassMetadata')
-            ->with($this->equalTo($metadata));
+                        ->method('loadClassMetadata')
+                        ->with($this->equalTo($metadata));
 
         $chain = new LoaderChain(array(
             $loader1,
@@ -43,15 +42,15 @@ class LoaderChainTest extends TestCase
     {
         $metadata = new ClassMetadata('\stdClass');
 
-        $loader1 = $this->getMockBuilder('Symfony\Component\Validator\Mapping\Loader\LoaderInterface')->getMock();
+        $loader1 = $this->getMock('Symfony\Component\Validator\Mapping\Loader\LoaderInterface');
         $loader1->expects($this->any())
-            ->method('loadClassMetadata')
-            ->will($this->returnValue(true));
+                        ->method('loadClassMetadata')
+                        ->will($this->returnValue(true));
 
-        $loader2 = $this->getMockBuilder('Symfony\Component\Validator\Mapping\Loader\LoaderInterface')->getMock();
+        $loader2 = $this->getMock('Symfony\Component\Validator\Mapping\Loader\LoaderInterface');
         $loader2->expects($this->any())
-            ->method('loadClassMetadata')
-            ->will($this->returnValue(false));
+                        ->method('loadClassMetadata')
+                        ->will($this->returnValue(false));
 
         $chain = new LoaderChain(array(
             $loader1,
@@ -65,15 +64,15 @@ class LoaderChainTest extends TestCase
     {
         $metadata = new ClassMetadata('\stdClass');
 
-        $loader1 = $this->getMockBuilder('Symfony\Component\Validator\Mapping\Loader\LoaderInterface')->getMock();
+        $loader1 = $this->getMock('Symfony\Component\Validator\Mapping\Loader\LoaderInterface');
         $loader1->expects($this->any())
-            ->method('loadClassMetadata')
-            ->will($this->returnValue(false));
+                        ->method('loadClassMetadata')
+                        ->will($this->returnValue(false));
 
-        $loader2 = $this->getMockBuilder('Symfony\Component\Validator\Mapping\Loader\LoaderInterface')->getMock();
+        $loader2 = $this->getMock('Symfony\Component\Validator\Mapping\Loader\LoaderInterface');
         $loader2->expects($this->any())
-            ->method('loadClassMetadata')
-            ->will($this->returnValue(false));
+                        ->method('loadClassMetadata')
+                        ->will($this->returnValue(false));
 
         $chain = new LoaderChain(array(
             $loader1,

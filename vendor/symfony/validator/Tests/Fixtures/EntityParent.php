@@ -13,7 +13,7 @@ namespace Symfony\Component\Validator\Tests\Fixtures;
 
 use Symfony\Component\Validator\Constraints\NotNull;
 
-class EntityParent implements EntityInterfaceA
+class EntityParent
 {
     protected $firstName;
     private $internal;

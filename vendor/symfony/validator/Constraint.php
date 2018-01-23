@@ -33,21 +33,29 @@ abstract class Constraint
 {
     /**
      * The name of the group given to all constraints with no explicit group.
+     *
+     * @var string
      */
     const DEFAULT_GROUP = 'Default';
 
     /**
      * Marks a constraint that can be put onto classes.
+     *
+     * @var string
      */
     const CLASS_CONSTRAINT = 'class';
 
     /**
      * Marks a constraint that can be put onto properties.
+     *
+     * @var string
      */
     const PROPERTY_CONSTRAINT = 'property';
 
     /**
      * Maps error codes to the names of their constants.
+     *
+     * @var array
      */
     protected static $errorNames = array();
 
@@ -121,9 +129,6 @@ abstract class Constraint
             unset($options['value']);
         }
 
-        if (is_array($options)) {
-            reset($options);
-        }
         if (is_array($options) && count($options) > 0 && is_string(key($options))) {
             foreach ($options as $option => $value) {
                 if (array_key_exists($option, $knownOptions)) {
@@ -133,7 +138,7 @@ abstract class Constraint
                     $invalidOptions[] = $option;
                 }
             }
-        } elseif (null !== $options && !(is_array($options) && 0 === count($options))) {
+        } elseif (null !== $options && !(is_array($options) && count($options) === 0)) {
             $option = $this->getDefaultOption();
 
             if (null === $option) {
@@ -201,7 +206,7 @@ abstract class Constraint
      *
      * @throws InvalidOptionsException If an invalid option name is given
      *
-     * @internal this method should not be used or overwritten in userland code
+     * @internal This method should not be used or overwritten in userland code.
      */
     public function __get($option)
     {

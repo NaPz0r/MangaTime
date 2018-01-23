@@ -11,11 +11,10 @@
 
 namespace Symfony\Component\Validator\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\ValidatorBuilder;
 use Symfony\Component\Validator\ValidatorBuilderInterface;
 
-class ValidatorBuilderTest extends TestCase
+class ValidatorBuilderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var ValidatorBuilderInterface
@@ -35,7 +34,7 @@ class ValidatorBuilderTest extends TestCase
     public function testAddObjectInitializer()
     {
         $this->assertSame($this->builder, $this->builder->addObjectInitializer(
-            $this->getMockBuilder('Symfony\Component\Validator\ObjectInitializerInterface')->getMock()
+            $this->getMock('Symfony\Component\Validator\ObjectInitializerInterface')
         ));
     }
 
@@ -87,21 +86,21 @@ class ValidatorBuilderTest extends TestCase
     public function testSetMetadataCache()
     {
         $this->assertSame($this->builder, $this->builder->setMetadataCache(
-            $this->getMockBuilder('Symfony\Component\Validator\Mapping\Cache\CacheInterface')->getMock())
+            $this->getMock('Symfony\Component\Validator\Mapping\Cache\CacheInterface'))
         );
     }
 
     public function testSetConstraintValidatorFactory()
     {
         $this->assertSame($this->builder, $this->builder->setConstraintValidatorFactory(
-            $this->getMockBuilder('Symfony\Component\Validator\ConstraintValidatorFactoryInterface')->getMock())
+            $this->getMock('Symfony\Component\Validator\ConstraintValidatorFactoryInterface'))
         );
     }
 
     public function testSetTranslator()
     {
         $this->assertSame($this->builder, $this->builder->setTranslator(
-            $this->getMockBuilder('Symfony\Component\Translation\TranslatorInterface')->getMock())
+            $this->getMock('Symfony\Component\Translation\TranslatorInterface'))
         );
     }
 

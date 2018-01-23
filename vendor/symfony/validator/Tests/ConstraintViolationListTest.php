@@ -11,11 +11,10 @@
 
 namespace Symfony\Component\Validator\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\ConstraintViolationList;
 
-class ConstraintViolationListTest extends TestCase
+class ConstraintViolationListTest extends \PHPUnit_Framework_TestCase
 {
     protected $list;
 
@@ -89,16 +88,16 @@ class ConstraintViolationListTest extends TestCase
         $this->list[] = $violation;
 
         $this->assertSame($violation, $this->list[0]);
-        $this->assertArrayHasKey(0, $this->list);
+        $this->assertTrue(isset($this->list[0]));
 
         unset($this->list[0]);
 
-        $this->assertArrayNotHasKey(0, $this->list);
+        $this->assertFalse(isset($this->list[0]));
 
         $this->list[10] = $violation;
 
         $this->assertSame($violation, $this->list[10]);
-        $this->assertArrayHasKey(10, $this->list);
+        $this->assertTrue(isset($this->list[10]));
     }
 
     public function testToString()

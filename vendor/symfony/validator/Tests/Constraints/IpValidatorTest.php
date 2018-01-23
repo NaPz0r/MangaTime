@@ -13,15 +13,9 @@ namespace Symfony\Component\Validator\Tests\Constraints;
 
 use Symfony\Component\Validator\Constraints\Ip;
 use Symfony\Component\Validator\Constraints\IpValidator;
-use Symfony\Component\Validator\Validation;
 
 class IpValidatorTest extends AbstractConstraintValidatorTest
 {
-    protected function getApiVersion()
-    {
-        return Validation::API_VERSION_2_5;
-    }
-
     protected function createValidator()
     {
         return new IpValidator();
@@ -221,7 +215,7 @@ class IpValidatorTest extends AbstractConstraintValidatorTest
     {
         return array(
             array('0.0.0.0'),
-            array('240.0.0.1'),
+            array('224.0.0.1'),
             array('255.255.255.255'),
         );
     }

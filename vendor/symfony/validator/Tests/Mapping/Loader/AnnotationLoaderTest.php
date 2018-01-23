@@ -12,7 +12,6 @@
 namespace Symfony\Component\Validator\Tests\Mapping\Loader;
 
 use Doctrine\Common\Annotations\AnnotationReader;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\Choice;
@@ -24,7 +23,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Mapping\Loader\AnnotationLoader;
 use Symfony\Component\Validator\Tests\Fixtures\ConstraintA;
 
-class AnnotationLoaderTest extends TestCase
+class AnnotationLoaderTest extends \PHPUnit_Framework_TestCase
 {
     public function testLoadClassMetadataReturnsTrueIfSuccessful()
     {
@@ -69,7 +68,7 @@ class AnnotationLoaderTest extends TestCase
             'choices' => array('A', 'B'),
         )));
         $expected->addGetterConstraint('lastName', new NotNull());
-        $expected->addGetterMethodConstraint('valid', 'isValid', new IsTrue());
+        $expected->addGetterConstraint('valid', new IsTrue());
         $expected->addGetterConstraint('permissions', new IsTrue());
 
         // load reflection class so that the comparison passes
@@ -139,7 +138,7 @@ class AnnotationLoaderTest extends TestCase
             'choices' => array('A', 'B'),
         )));
         $expected->addGetterConstraint('lastName', new NotNull());
-        $expected->addGetterMethodConstraint('valid', 'isValid', new IsTrue());
+        $expected->addGetterConstraint('valid', new IsTrue());
         $expected->addGetterConstraint('permissions', new IsTrue());
 
         // load reflection class so that the comparison passes

@@ -29,6 +29,8 @@ use Symfony\Component\Validator\Exception\ValidatorException;
 class PropertyMetadata extends MemberMetadata
 {
     /**
+     * Constructor.
+     *
      * @param string $class The class this property is defined on
      * @param string $name  The name of this property
      *
@@ -56,14 +58,8 @@ class PropertyMetadata extends MemberMetadata
      */
     protected function newReflectionMember($objectOrClassName)
     {
-        $originalClass = is_string($objectOrClassName) ? $objectOrClassName : get_class($objectOrClassName);
-
         while (!property_exists($objectOrClassName, $this->getName())) {
             $objectOrClassName = get_parent_class($objectOrClassName);
-
-            if (false === $objectOrClassName) {
-                throw new ValidatorException(sprintf('Property "%s" does not exist in class "%s".', $this->getName(), $originalClass));
-            }
         }
 
         $member = new \ReflectionProperty($objectOrClassName, $this->getName());
