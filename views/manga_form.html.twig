@@ -1,46 +1,67 @@
 {% extends 'layout.html.twig' %}
-{% set adminMenu = true %}
 
-{% block name %}{{ name }}{% endblock %}
+{% block content %}
+<div class="col-md-12">
+<form class="form-horizontal" method="post">
+    <fieldset>
 
-{% block description %}
-<h2 class="text-center">{{ block('name') }}</h2>
-{% for flashMessage in app.session.flashbag.get('success') %}
-<div class="alert alert-success">
-    {{ flashMessage }}
+        <!-- Form Name -->
+        <legend>Ajout d'un manga</legend>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Nom du Manga</label>
+            <div class="col-md-4">
+                <input id="manganame" name="manganame" type="text" placeholder="Saisir le nom du manga" class="form-control input-md">
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Année de publication du manga</label>
+            <div class="col-md-4">
+                <input id="mangadate" name="mangadate" type="text" placeholder="Saisir l'année de publication du manga" class="form-control input-md">
+            </div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textarea">Description du manga</label>
+            <div class="col-md-4">
+                <textarea class="form-control" id="descriptionmanga" name="descriptionmanga"></textarea>
+            </div>
+        </div>
+
+        <!-- Select Basic -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="selectbasic">Manga en cours:</label>
+            <div class="col-md-4">
+                <select id="statusmanga" name="statusmanga" class="form-control">
+                    <option value="1">Oui</option>
+                    <option value="2">Non</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Select Basic -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="selectbasic">Choisissez l'auteur</label>
+            <div class="col-md-4">
+                <select id="selectbasic" name="selectbasic" class="form-control">
+                    <option value="1">Option one</option>
+                    <option value="2">Option two</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group">
+            <div class="col-md-4">
+                <button id="singlebutton" name="singlebutton" class="btn btn-primary">Valider</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
 </div>
-{% endfor %}
-
-<div class="well">
-{{ form_start(mangaForm, { 'attr': {'class': 'form-horizontal'} }) }}
-    <div class="form-group">
-        {{ form_label(mangaForm.name, null, { 'label_attr':  {
-            'class': 'col-sm-4 control-label'
-        }}) }}
-        <div class="col-sm-6">
-            {{ form_errors(mangaForm.name) }}
-            {{ form_widget(mangaForm.name, { 'attr':  {
-                'class': 'form-control'
-            }}) }}
-        </div>
-    </div>
-    <div class="form-group">
-        {{ form_label(mangaForm.description, null, { 'label_attr':  {
-            'class': 'col-sm-4 control-label'
-        }}) }}
-        <div class="col-sm-6">
-            {{ form_errors(mangaForm.description) }}
-            {{ form_widget(mangaForm.description, { 'attr':  {
-                'class': 'form-control',
-                'rows': '8'
-            }}) }}
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-4 col-sm-3">
-            <input type="submit" class="btn btn-primary" value="Save" />
-        </div>
-    </div>
-{{ form_end(mangaForm) }}
-</div>
-{% endblock %}
+{% endblock content %}

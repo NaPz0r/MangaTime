@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container">
-    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+    {# <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-target">
@@ -16,15 +16,117 @@
             </div>
         </div>
         <!-- /.container -->
-    </nav>
-    {% for manga in mangas %}
+    </nav> #}
+    {# {% for manga in mangas %}
     <article>
         <h2>{{ manga.nameManga }}</h2>
         <p>{{ manga.datePublicationManga|date("Y") }}</p>
         <p>{{ manga.descriptionManga }}</p>
     </article>
-    {% endfor %}
-    <a href="{{ path('test') }}">Clique</a>     
+    {% endfor %} #}
+
+            <section class="container-fluid row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="Carousel" class="carousel slide">
+
+                            <ol class="carousel-indicators">
+                                <li data-target="#Carousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#Carousel" data-slide-to="1"></li>
+                                <li data-target="#Carousel" data-slide-to="2"></li>
+                            </ol>
+
+                            <!-- Carousel items -->
+                            <div class="carousel-inner">
+                                {# {% for manga in mangas %}
+                                    <div class="item {%if loop.index == 4%} active {%endif%}">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <!-- le reste des images si sup à 1-->
+                                                <a href="{{ path('manga', {'id' : manga.idManga }) }}" class="thumbnail"><img src="{{asset('img/cover/' ~  manga.slugManga  ~ '.jpg')}}" alt="Image" style="max-width:100%; }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                {% endfor %} #}
+                                <div class="item active">
+                                    <div class="row">
+                                    {% for manga in mangas %}
+                                        <div class="col-md-3">
+                                        
+                                            <a href="{{ path('manga', {'id' : manga.idManga }) }}" class="thumbnail"><img src="{{asset('img/cover/' ~  manga.slugManga  ~ '.jpg')}}" alt="Image" style="max-width:100%;"></a>
+                                        
+                                        </div>
+                                    {% endfor %}
+                                        
+                                        {# <div class="col-md-3">
+                                            <a href="#" class="thumbnail"><img src="img/cover/black-clover.jpg" alt="Image" style="max-width:100%;"></a>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <a href="#" class="thumbnail"><img src="img/cover/bleach.jpg" alt="Image" style="max-width:100%;"></a>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <a href="#" class="thumbnail"><img src="img/cover/boruto.jpg" alt="Image" style="max-width:100%;"></a>
+                                        </div> #}
+                                        
+                                    </div>
+                                    <!--.row-->
+                                </div>
+                                <!--.item-->
+
+                                {# <div class="item">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <a href="#" class="thumbnail"><img src="img/cover/detective-conan.jpg" alt="Image" style="max-width:100%;"></a>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a>
+                                        </div>
+                                    </div>
+                                    <!--.row-->
+                                </div>
+                                <!--.item-->
+
+                                <div class="item">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a>
+                                        </div>
+                                    </div>
+                                    <!--.row-->
+                                </div>
+                                <!--.item--> #}
+
+                            </div>
+                            <!--.carousel-inner-->
+                            <a data-slide="prev" href="#Carousel" class="left carousel-control">‹</a>
+                            <a data-slide="next" href="#Carousel" class="right carousel-control">›</a>
+                        </div>
+                        <!--.Carousel-->
+
+                    </div>
+                </div>
+            </div>
+            <!--.container-->
+        </section>
+        
+    {# <a href="{{ path('test') }}">Clique</a>      #}
 {% endblock content %} 
 {% block footer %} 
 {% endblock footer %}

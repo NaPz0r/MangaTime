@@ -11,8 +11,8 @@ class AddManga extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('content', TextareaType::class);
+            ->add('nameManga', TextareaType::class)
+            ->add('descriptionManga', TextareaType::class);
     }
 
     public function getName()

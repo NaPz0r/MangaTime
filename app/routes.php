@@ -7,17 +7,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 use MangaTime\Domain\Manga;
 use MangaTime\Form\Type\AddManga;
 use app\Controller\HomeController;
-// use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-// use Symfony\Component\Form\Extension\Core\Type\FormType;
-// use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-// use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 
 // Home page
-$app->get('/', function () use ($app) {
-    $mangas = $app['dao.manga']->findAll();
-    return $app['twig']->render('index.html.twig', array('mangas' => $mangas));
-})->bind('home');
+
 
 // Login form
 $app->get('/login', function(Request $request) use ($app) {
@@ -27,16 +24,10 @@ $app->get('/login', function(Request $request) use ($app) {
     ));
 })->bind('login');
 
-$app->get('/test', function () use ($app) {
-    return $app['twig']->render('test.html.twig');
-})->bind('test');
-
 $app->get('/manga/{id}', function ($id) use ($app) {
     $manga = $app['dao.manga']->find($id);
     return $app['twig']->render('manga.html.twig', array('manga' => $manga));
 })->bind('manga');
-
-
 
 $app->get('/admin', function() use ($app) {
     $mangas = $app['dao.manga']->findAll();
@@ -46,12 +37,31 @@ $app->get('/admin', function() use ($app) {
         'users' => $users));
 })->bind('admin');
 
+$app->get('/ajoutAuthor', "MangaTime\Controller\JsonControllerAuthor::ajoutAuteurs")
+    ->bind('ajoutAuthor');
+
+$app->get('/ajoutManga', "MangaTime\Controller\JsonControllerManga::ajoutMangas")
+    ->bind('ajoutManga');
+
+$app->get('/', "MangaTime\Controller\HomeController::indexAction")
+    ->bind('home');
+
 $app->match('/admin/manga/add', function(Request $request) use ($app) {
-    $manga = new Manga();
-    $mangaForm = $app['form.factory']->create(MangaType::class, $manga);
-    $mangaForm->handleRequest($request);
+    // if (isset($_POST)){
+    //     $error = 0;
+    //     if(strlen($_POST['manganame']) < 3){
+    //         $error++;
+    //     }
+    //     if(strlen($_POST['mangadate']) != 4){
+    //         $error++;
+    //     }
+    //     if ($error = 0){
+    //         $manga = new Manga();
+    //         $manga = $app['dao.manga']->
+    //     }
+    // }
     if ($mangaForm->isSubmitted() && $mangaForm->isValid()) {
-        $app['dao.manga']->save($manga);
+        $app['dao.manga']->addManga($manga);
         $app['session']->getFlashBag()->add('success', 'The manga was successfully created.');
     }
     return $app['twig']->render('manga_form.html.twig', array(
@@ -62,7 +72,7 @@ $app->match('/admin/manga/add', function(Request $request) use ($app) {
 // Edit an existing manga
 $app->match('/admin/manga/{id}/edit', function($id, Request $request) use ($app) {
     $manga = $app['dao.manga']->find($id);
-    $mangaForm = $app['form.factory']->create(MangaType::class, $manga);
+    $mangaForm = $app['form.factory']->create(AddManga::class, $manga);
     $mangaForm->handleRequest($request);
     if ($mangaForm->isSubmitted() && $mangaForm->isValid()) {
         $app['dao.manga']->save($manga);
@@ -73,7 +83,7 @@ $app->match('/admin/manga/{id}/edit', function($id, Request $request) use ($app)
         'mangaForm' => $mangaForm->createView()));
 })->bind('admin_manga_edit');
 
-// Remove an manga
+// Remove a manga
 $app->get('/admin/manga/{id}/delete', function($id, Request $request) use ($app) {
     // Delete the manga
     $app['dao.manga']->delete($id);
@@ -84,9 +94,8 @@ $app->get('/admin/manga/{id}/delete', function($id, Request $request) use ($app)
 
 
 
-// // Home page
-// $app->get('/', "app\Controller\HomeController::indexAction")
-//     ->bind('home');
+// Home page
+
 
 // // Login form
 // $app->get('/login', "app\Controller\HomeController::loginAction")

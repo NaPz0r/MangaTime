@@ -21,7 +21,7 @@ class MangaDAO extends DAO
         $mangas = array();
         foreach ($result as $row) {
             $mangasId = $row['Id_Manga'];
-            $mangas[$mangasId] = $this->buildManga($row);
+            $mangas[$mangasId] = $this->buildDomainObject($row);
         }
         return $mangas;
     }
@@ -39,7 +39,8 @@ class MangaDAO extends DAO
         $manga->setDatePublicationManga($row['DatePublication_Manga']);
         $manga->setDescriptionManga($row['Description_Manga']);
         $manga->setStatusManga($row['Status_Manga']);
-        $manga->setAuthor($row['Authors_Id_Author']);
+        $manga->setSlugManga($row['Slug_Manga']);
+        $manga->setAuthor($row['Authors_Id_Author']);        
         return $manga;
     }
 
@@ -67,7 +68,6 @@ class MangaDAO extends DAO
     public function find($id) {
         $sql = "select * from mangas where Id_Manga=?";
         $row = $this->getDb()->fetchAssoc($sql, array($id));
-
         if ($row)
             return $this->buildDomainObject($row);
         else
@@ -76,8 +76,10 @@ class MangaDAO extends DAO
 
     public function save(Manga $manga) {
         $mangaData = array(
-            'Name_Manga' => $manga->getNameManga(),
-            'Description_Manga' => $manga->getDescriptionManga(),
+            'manga_name' => $manga->getNameManga(),
+            'manga_datepublication' => $manga->getDatePublicationManga(),
+            'manga_descriptionmanga' => $manga->getDescriptionManga(),
+            'manga_statusmanga' => $manga->getStatusManga()
             );
 
         if ($manga->getIdManga()) {

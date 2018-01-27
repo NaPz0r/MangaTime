@@ -31,7 +31,8 @@
                 </thead>
                 {% for manga in mangas %}
                 <tr>
-                    <td><a class="mangaTitle" href="{{ path('manga', { 'id': manga.idManga }) }}">{{ manga.DescriptionManga }}</a></td>
+                {# {{ dump(manga) }} #}
+                    <td><a class="mangaTitle" href="{{ path('manga', { 'id': manga.idManga }) }}">{{ manga.nameManga }}</a></td>
                     <td>{{ manga.DescriptionManga | truncate(60) }}</td>
                     <td>
                         <a href="{{ path('admin_manga_edit', { 'id': manga.idManga }) }}" class="btn btn-info btn-xs" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
@@ -45,10 +46,10 @@
                                         <h4 class="modal-title" id="myModalLabel">Confirmation needed</h4>
                                     </div>
                                     <div class="modal-body">
-                                        Do you really want to delete this manga ?
+                                        Voulez vous vraiment supprimer ce manga ?
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
                                         <a href="{{ path('admin_manga_delete', { 'id': manga.idManga }) }}" class="btn btn-danger">Confirm</a>
                                     </div>
                                 </div><!-- /.modal-content -->

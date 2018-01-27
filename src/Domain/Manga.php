@@ -16,6 +16,7 @@ class Manga{
     private $datePublicationManga;
     private $descriptionManga;
     private $statusManga;
+    private $slugManga;
     private $author;
 
     // public function __construct($nameManga){
@@ -120,6 +121,26 @@ class Manga{
     public function setStatusManga($statusManga)
     {
         $this->statusManga = $statusManga;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of statusManga
+     */ 
+    public function getSlugManga()
+    {
+        return $this->slugManga;
+    }
+
+    /**
+     * Set the value of statusManga
+     *
+     * @return  self
+     */ 
+    public function setSlugManga($slugManga)
+    {
+        $this->slugManga = $slugManga;
 
         return $this;
     }

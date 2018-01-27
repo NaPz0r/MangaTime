@@ -45,6 +45,10 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
     ),
 ));
 
+$app->register(new Silex\Provider\FormServiceProvider());
+$app->register(new Silex\Provider\LocaleServiceProvider());
+$app->register(new Silex\Provider\TranslationServiceProvider());
+
 // Register services
 $app['dao.manga'] = function ($app) {
     return new MangaTime\DAO\MangaDAO($app['db']);
@@ -52,4 +56,6 @@ $app['dao.manga'] = function ($app) {
 $app['dao.user'] = function ($app) {
     return new MangaTime\DAO\UserDAO($app['db']);
 };
-
+$app['dao.author'] = function ($app) {
+    return new MangaTime\DAO\AuthorDAO($app['db']);
+};
