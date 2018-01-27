@@ -1,5 +1,11 @@
 @import url("bootstrap.min.css");
 
+/* ---------------------------------------- */
+
+
+/* NOTE: Carrousel Page d'Accueil */
+
+
 /* Removes the default 20px margin and creates some padding space for the indicators and controls */
 
 .carousel {
@@ -31,6 +37,7 @@
     top: auto;
     bottom: 0px;
     margin-right: -19px;
+    display: none;
 }
 
 
@@ -47,6 +54,12 @@
 .background {
     background-color: #bebebe;
 }
+
+
+/* ---------------------------------------- */
+
+
+/* NOTE: Footer */
 
 body {
     font-family: 'Raleway', sans-serif;
@@ -107,8 +120,139 @@ footer ul li a:hover {
     padding: 15px 0 10px 0;
 }
 
-#prochainement {
+
+/* ---------------------------------------- */
+
+
+/* NOTE: "Fiche Manga" et "Page d'Accueil" */
+
+.prochainement {
     width: 15%;
     margin-left: 2%;
-    margin-right: 2%
+    margin-right: 2%;
 }
+
+#coverfiche {
+    width: 100%;
+    border-style: double;
+    border-width: 5px;
+}
+
+.backgroundfiche {
+    background-color: #ffffff;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+#description {
+    margin-left: 0%;
+    margin-top: 0%;
+    text-align: justify;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#titredescription {
+    margin-bottom: -2%;
+    display: inline-flex;
+    align-items: center;
+    margin-top: 1%;
+}
+
+#button {
+    margin-top: -5%;
+}
+
+span {
+    color: #BEBEBE;
+}
+
+
+/* ---------------------------------------- */
+
+
+/* NOTE: Barre de recherche */
+
+#imaginary_container {
+    margin-top: 20%;
+    /* Don't copy this */
+}
+
+.stylish-input-group .input-group-addon {
+    background: white !important;
+}
+
+.stylish-input-group .form-control {
+    border-right: 0;
+    box-shadow: 0 0 0;
+    border-color: #ccc;
+}
+
+.stylish-input-group button {
+    border: 0;
+    background: transparent;
+}
+
+#recherchecss {
+    padding-top: 4%;
+    padding-bottom: 4%;
+}
+
+
+/* NOTE: Espace pour les résultats de recherches  */
+
+#espacerecherche {
+    padding-bottom: 10%;
+    padding-top: 10%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+
+/* ----------------------------------------- */
+
+
+/* NOTE: Page pour modifier un manga */
+
+#boutonajouter {
+    width: 50%;
+    display: block;
+    margin: auto;
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+
+#boutonmodifier {
+    width: 50%;
+    display: block;
+    margin: auto;
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+
+#ajouter {
+    display: none;
+    text-align: right;
+    width: 50%;
+    text-align: inherit;
+    display: block;
+    margin: auto;
+}
+
+#ajouter:target {
+    display: block
+}
+
+#recherchemodif {
+    width: 156%;
+    margin-top: 5%;
+}
+
+#boutonenregistrer {
+    width: 50%;
+    margin: auto;
+    display: block;
+}
+
+
+/* ----------------------------------------- */

@@ -25,7 +25,7 @@
     </article>
     {% endfor %} #}
 
-            <section class="container-fluid row">
+          {#  <section class="container-fluid row">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -39,7 +39,7 @@
 
                             <!-- Carousel items -->
                             <div class="carousel-inner">
-                                {# {% for manga in mangas %}
+                                {% for manga in mangas %}
                                     <div class="item {%if loop.index == 4%} active {%endif%}">
                                         <div class="row">
                                             <div class="col-md-3">
@@ -49,13 +49,13 @@
                                         </div>
                                     </div>
                                     
-                                {% endfor %} #}
-                                <div class="item active">
+                                {% endfor %}
+                                 <div class="item active"> #}
                                     <div class="row">
                                     {% for manga in mangas %}
                                         <div class="col-md-3">
                                         
-                                            <a href="{{ path('manga', {'id' : manga.idManga }) }}" class="thumbnail"><img src="{{asset('img/cover/' ~  manga.slugManga  ~ '.jpg')}}" alt="Image" style="max-width:100%;"></a>
+                                            <a href="{{ path('manga', {'id' : manga.idManga }) }}" class="thumbnail"><img src="{{asset('img/cover/' ~  manga.slugManga  ~ '.jpg')}}" alt="Image" class="img-responsive"></a>
                                         
                                         </div>
                                     {% endfor %}
@@ -68,14 +68,14 @@
                                         </div>
                                         <div class="col-md-3">
                                             <a href="#" class="thumbnail"><img src="img/cover/boruto.jpg" alt="Image" style="max-width:100%;"></a>
-                                        </div> #}
+                                        </div>
                                         
                                     </div>
                                     <!--.row-->
                                 </div>
                                 <!--.item-->
 
-                                {# <div class="item">
+                                <div class="item">
                                     <div class="row">
                                         <div class="col-md-3">
                                             <a href="#" class="thumbnail"><img src="img/cover/detective-conan.jpg" alt="Image" style="max-width:100%;"></a>
@@ -111,7 +111,7 @@
                                     </div>
                                     <!--.row-->
                                 </div>
-                                <!--.item--> #}
+                                <!--.item-->
 
                             </div>
                             <!--.carousel-inner-->
@@ -124,7 +124,7 @@
                 </div>
             </div>
             <!--.container-->
-        </section>
+        </section> #}
         
     {# <a href="{{ path('test') }}">Clique</a>      #}
 {% endblock content %} 

@@ -43,6 +43,10 @@ $app->get('/ajoutAuthor', "MangaTime\Controller\JsonControllerAuthor::ajoutAuteu
 $app->get('/ajoutManga', "MangaTime\Controller\JsonControllerManga::ajoutMangas")
     ->bind('ajoutManga');
 
+    $app->get('/ajoutChapters', "MangaTime\Controller\jsonControllerChapter::ajoutChapters")
+    ->bind('ajoutChapters');
+
+
 $app->get('/', "MangaTime\Controller\HomeController::indexAction")
     ->bind('home');
 

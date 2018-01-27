@@ -8,10 +8,10 @@ use Symfony\Component\HttpFoundation\Request;
 class HomeController{
 
     public function indexAction (Application $app) {
-        $mangas = $app['dao.manga']->findAll();
+        $mangas = $app['dao.manga']->findOneManga($app['user']->getId());
 
-        var_dump($app['user']->getId());
-        echo "<pre>".print_r($app['session'],1)."</pre>";
+        // var_dump($app['user']->getId());
+        // echo "<pre>".print_r($app['session'],1)."</pre>";
         
         return $app['twig']->render('index.html.twig', array('mangas' => $mangas));
 

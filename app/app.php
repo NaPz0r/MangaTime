@@ -59,3 +59,6 @@ $app['dao.user'] = function ($app) {
 $app['dao.author'] = function ($app) {
     return new MangaTime\DAO\AuthorDAO($app['db']);
 };
+
+$app->get('/ajoutChapters', "MangaTime\Controller\jsonControllerChapters::ajoutChapters")
+    ->bind('ajoutChapters');

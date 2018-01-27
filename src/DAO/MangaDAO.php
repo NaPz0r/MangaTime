@@ -14,7 +14,7 @@ class MangaDAO extends DAO
      * @return array A list of all mangas.
      */
     public function findAll() {
-        $sql = "select * from mangas order by Id_Manga desc";
+        $sql = "select * from mangas, authors where mangas.Authors_Id_Author = authors.Id_Author order by Id_Manga desc";
         $result = $this->getDb()->fetchAll($sql);
         
         // Convert query result to an array of domain objects
@@ -37,10 +37,10 @@ class MangaDAO extends DAO
         $manga->setIdManga($row['Id_Manga']);
         $manga->setNameManga($row['Name_Manga']);
         $manga->setDatePublicationManga($row['DatePublication_Manga']);
-        $manga->setDescriptionManga($row['Description_Manga']);
+        $manga->setDescriptionManga(str_replace("&#039;", "'",$row['Description_Manga']));
         $manga->setStatusManga($row['Status_Manga']);
         $manga->setSlugManga($row['Slug_Manga']);
-        $manga->setAuthor($row['Authors_Id_Author']);        
+        $manga->setAuthorName($row['Name_Author']);        
         return $manga;
     }
 
@@ -58,6 +58,17 @@ class MangaDAO extends DAO
     
     }
 
+    public function findOneManga($userid){
+
+        $sql = "SELECT * FROM `users_has_mangas` WHERE users_has_mangas.Users_Id_User = ?";
+        $result = $this->getDb()->fetchAssoc($sql, array($userid));
+        foreach ($result as $row) {
+            $mangasId = intval($result['Mangas_Id_Manga']);
+            find($mangasId);
+        }
+        return true;
+    }
+
         /**
      * Returns an article matching the supplied id.
      *
@@ -66,7 +77,7 @@ class MangaDAO extends DAO
      * @return \MicroCMS\Domain\Article|throws an exception if no matching article is found
      */
     public function find($id) {
-        $sql = "select * from mangas where Id_Manga=?";
+        $sql = "select * from mangas, authors where mangas.Authors_Id_Author = authors.Id_Author AND Id_Manga= ?";
         $row = $this->getDb()->fetchAssoc($sql, array($id));
         if ($row)
             return $this->buildDomainObject($row);

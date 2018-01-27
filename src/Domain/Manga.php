@@ -17,7 +17,7 @@ class Manga{
     private $descriptionManga;
     private $statusManga;
     private $slugManga;
-    private $author;
+    private $authorName;
 
     // public function __construct($nameManga){
     //     $this->setNameManga($nameManga);        
@@ -148,9 +148,9 @@ class Manga{
     /**
      * Get the value of author
      */ 
-    public function getAuthor()
+    public function getAuthorName()
     {
-        return $this->author;
+        return $this->authorName;
     }
 
     /**
@@ -158,9 +158,9 @@ class Manga{
      *
      * @return  self
      */ 
-    public function setAuthor($author)
+    public function setAuthorName($authorName)
     {
-        $this->author = $author;
+        $this->authorName = $authorName;
 
         return $this;
     }
