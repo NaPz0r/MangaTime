@@ -16,7 +16,7 @@ class JsonControllerAuthor {
         $data = json_decode($jsondata, true);
         // var_dump($data);
         $dataManga = $data["manga"];
-        var_dump($dataManga);
+        // var_dump($dataManga);
         $db = new \PDO('mysql:host=localhost;dbname=mangatime;charset=utf8', 'root', '');
         $addAuthors = $db->prepare('INSERT INTO authors (Name_Author) VALUES ( :name)');
 
@@ -26,7 +26,7 @@ class JsonControllerAuthor {
                 $jsondatamanga = file_get_contents("http://www.mangaeden.com/api/manga/".$tab["i"]);
                 $recup = json_decode($jsondatamanga, true);
                 $nouvAuthor = array($recup["author"]);
-                var_dump($nouvAuthor);
+                // var_dump($nouvAuthor);
                 // $auteur = new \MangaTime\DAO\AuthorDAO();
                 // insertAuthor($recup["author"]);
                 // \MangaTime\DAO\AuthorDAO\insertAuthor($recup["author"]);

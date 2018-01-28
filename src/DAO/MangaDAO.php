@@ -139,4 +139,9 @@ class MangaDAO extends DAO
         // Delete the article
         $this->getDb()->delete('mangas', array('Id_Manga' => $id));
     }
+
+    public function deleteChapter($id) {
+        // Delete the article
+        $this->getDb()->delete('chapters', array('Mangas_Id_Manga' => $id));
+    }
 }

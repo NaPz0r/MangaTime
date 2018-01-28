@@ -1,67 +1,94 @@
-{% extends 'layout.html.twig' %}
-
-{% block content %}
+{% extends 'layout.html.twig' %} {% block content %}
 <div class="col-md-12">
-<form class="form-horizontal" method="post">
-    <fieldset>
+    <form class="form-horizontal" method="post">
+        <fieldset>
 
-        <!-- Form Name -->
-        <legend>Ajout d'un manga</legend>
+            <!-- Form Name -->
+            <legend>Ajout d'un manga</legend>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="textinput">Nom du Manga</label>
-            <div class="col-md-4">
-                <input id="manganame" name="manganame" type="text" value="{{ manga.nameManga }}" class="form-control input-md">
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Nom du Manga</label>
+                <div class="col-md-4">
+                    <input id="manganame" name="manganame" type="text" value="{{ manga.nameManga }}" class="form-control input-md">
+                </div>
             </div>
-        </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="textinput">Année de publication du manga</label>
-            <div class="col-md-4">
-                <input id="mangadate" name="mangadate" type="text" value="{{ manga.datePublicationManga }}" class="form-control input-md">
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Année de publication du manga</label>
+                <div class="col-md-4">
+                    <input id="mangadate" name="mangadate" type="text" value="{{ manga.datePublicationManga }}" class="form-control input-md">
+                </div>
             </div>
-        </div>
 
-        <!-- Textarea -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="textarea">Description du manga</label>
-            <div class="col-md-4">
-                <textarea class="form-control" id="descriptionmanga" name="descriptionmanga">{{ manga.descriptionManga }}</textarea>
+            <!-- Textarea -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textarea">Description du manga</label>
+                <div class="col-md-4">
+                    <textarea class="form-control" id="descriptionmanga" name="descriptionmanga">{{ manga.descriptionManga }}</textarea>
+                </div>
             </div>
-        </div>
 
-        <!-- Select Basic -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="selectbasic">Manga en cours:</label>
-            <div class="col-md-4">
-                <select id="statusmanga" name="statusmanga" class="form-control">
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="selectbasic">Manga en cours:</label>
+                <div class="col-md-4">
+                    <select id="statusmanga" name="statusmanga" class="form-control">
                     <option value="1">Oui</option>
                     <option value="2">Non</option>
                 </select>
+                </div>
             </div>
-        </div>
+            <div class="form-group">
+                <div class="col-xs-4 col-xs-offset-4 ">
+                    <button id="editmanga" name="singlebutton" class="btn btn-primary">Valider</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="selectbasic">Supprimer tous les chapitres de ce manga :</label>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-danger" title="Delete" data-toggle="modal" data-target="#mangaDialog{{ manga.idManga }}"><span class="glyphicon glyphicon-remove"></span>
+                </button>
+                    <div class="modal fade" id="mangaDialog{{ manga.idManga }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
 
-        <!-- Select Basic -->
-        {# <div class="form-group">
-            <label class="col-md-4 control-label" for="selectbasic">Choisissez l'auteur</label>
-            <div class="col-md-4">
-                <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <h4 class="modal-title" id="myModalLabel">Besoin de confirmation</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Voulez vous vraiment supprimer les chapitres de ce manga ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                    <a href="{{ path('admin_chapter_delete', { 'id': manga.idManga }) }}" class="btn btn-danger">Confirmer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<!-- Select Basic -->
+{#
+<div class="form-group">
+    <label class="col-md-4 control-label" for="selectbasic">Choisissez l'auteur</label>
+    <div class="col-md-4">
+        <select id="selectbasic" name="selectbasic" class="form-control">
                     <option value="1">Option one</option>
                     <option value="2">Option two</option>
                 </select>
-            </div>
-        </div> #}
+    </div>
+</div> #}
 
-        <!-- Button -->
-        <div class="form-group">
-            <div class="col-xs-4 col-xs-offset-4">
-                <button id="editmanga" name="singlebutton" class="btn btn-primary">Valider</button>
-            </div>
-        </div>
+<!-- Button -->
 
-    </fieldset>
+
+</fieldset>
 </form>
 </div>
 <script src="../../../js/editmanga.js"></script>

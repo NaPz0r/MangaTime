@@ -12,11 +12,10 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 
-// Home page
+// Routes du controlleur Home
 $app->get('/', "MangaTime\Controller\HomeController::indexAction")
     ->bind('home');
 
-// Route de login
 $app->get('/login', "MangaTime\Controller\HomeController::loginAction")
     ->bind('login');
 
@@ -26,20 +25,27 @@ $app->get('/register', "MangaTime\Controller\HomeController::registerAction")
 $app->get('/allmanga', "MangaTime\Controller\HomeController::mangaAffiche")
     ->bind('allmanga');
 
-
 $app->get('/manga/{id}', "MangaTime\Controller\HomeController::mangaAction")
     ->bind('manga');
 
-$app->get('/recherche', "MangaTime\Controller\MangaRecherche::recherche")
-    ->bind('recherche');
 
 $app->get('/savefollow', "MangaTime\Controller\HomeController::saveFollow")
     ->bind('savefollow');
 
+// Routes de recherche
+$app->get('/recherche', "MangaTime\Controller\MangaRecherche::recherche")
+    ->bind('recherche');
 
 // Routes d'administration
 $app->get('/admin', "MangaTime\Controller\AdminController::indexAction")
     ->bind('admin');
+
+// Remove a manga
+$app->get('/admin/manga/{id}/delete', "MangaTime\Controller\AdminController::removeManga") 
+    ->bind('admin_manga_delete');
+
+$app->get('/admin/chapter/{id}/delete', "MangaTime\Controller\AdminController::removeChapter") 
+    ->bind('admin_chapter_delete');
 
 // Edit an existing manga
 $app->match('/admin/manga/{id}/edit', function($id, Request $request) use ($app) {
@@ -52,14 +58,7 @@ $app->match('/admin/manga/{id}/edit/done', function($id, Request $request) use (
     $manga = $app['dao.manga'];
 })->bind('admin_manga_edit_done');
 
-// Remove a manga
-$app->get('/admin/manga/{id}/delete', function($id, Request $request) use ($app) {
-    // Delete the manga
-    $app['dao.manga']->delete($id);
-    $app['session']->getFlashBag()->add('success', 'Le manga a bien été supprimé.');
-    // Redirect to admin home page
-    return $app->redirect($app['url_generator']->generate('admin'));
-})->bind('admin_manga_delete');
+
 
 
 // Ajouts d'auteurs / mangas / chapitres grâce à l'API

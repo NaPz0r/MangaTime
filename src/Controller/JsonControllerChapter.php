@@ -25,8 +25,8 @@ class JsonControllerChapter {
                 
                     if ($manga == "i" && $valeur["h"] > 20000000) {
                         $jsondatamanga = file_get_contents("http://www.mangaeden.com/api/manga/".$description);
-                        var_dump($valeur["h"]);
-                        var_dump($valeur["a"]);
+                        // var_dump($valeur["h"]);
+                        // var_dump($valeur["a"]);
                             $recup = json_decode($jsondatamanga, true);
                             // $recup1 = json_decode($jsondatamanga, true);
                             $nouvManga = array($recup["title"], $recup["chapters_len"]);
