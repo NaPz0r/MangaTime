@@ -12,7 +12,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Nom du Manga</label>
             <div class="col-md-4">
-                <input id="manganame" name="manganame" type="text" placeholder="Saisir le nom du manga" class="form-control input-md">
+                <input id="manganame" name="manganame" type="text" value="{{ manga.nameManga }}" class="form-control input-md">
             </div>
         </div>
 
@@ -20,7 +20,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Année de publication du manga</label>
             <div class="col-md-4">
-                <input id="mangadate" name="mangadate" type="text" placeholder="Saisir l'année de publication du manga" class="form-control input-md">
+                <input id="mangadate" name="mangadate" type="text" value="{{ manga.datePublicationManga }}" class="form-control input-md">
             </div>
         </div>
 
@@ -28,7 +28,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="textarea">Description du manga</label>
             <div class="col-md-4">
-                <textarea class="form-control" id="descriptionmanga" name="descriptionmanga"></textarea>
+                <textarea class="form-control" id="descriptionmanga" name="descriptionmanga">{{ manga.descriptionManga }}</textarea>
             </div>
         </div>
 
@@ -44,7 +44,7 @@
         </div>
 
         <!-- Select Basic -->
-        <div class="form-group">
+        {# <div class="form-group">
             <label class="col-md-4 control-label" for="selectbasic">Choisissez l'auteur</label>
             <div class="col-md-4">
                 <select id="selectbasic" name="selectbasic" class="form-control">
@@ -52,7 +52,7 @@
                     <option value="2">Option two</option>
                 </select>
             </div>
-        </div>
+        </div> #}
 
         <!-- Button -->
         <div class="form-group">

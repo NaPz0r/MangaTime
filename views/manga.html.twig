@@ -1,71 +1,95 @@
-{% extends "layout.html.twig" %}
+{% extends "layout.html.twig" %} {% block name %}{% endblock %} {% block content %} {#
+<h2>{{ manga.NameManga }}</h2>
+<div class="container-fluid">
+    <div class="col-xs-4">
 
-{% block name %}{% endblock %}
-
-{% block content %}
-{# <h2>{{ manga.NameManga }}</h2>
-<div class="container-fluid"> 
-<div class="col-xs-4">
-    
-</div>
-<div class="col-xs-8">
-    <p><strong>Description : </strong>{{ manga.DescriptionManga}} </p>
-    <p><strong>Année de publication : </strong>{{ manga.DatePublicationManga }} </p>
-</div>
+    </div>
+    <div class="col-xs-8">
+        <p><strong>Description : </strong>{{ manga.DescriptionManga}} </p>
+        <p><strong>Année de publication : </strong>{{ manga.DatePublicationManga }} </p>
+    </div>
 </div>
 <div class="col-xs-12">
 
-<button type="button" id="followButton" data-loading-text="Chargement..." class="btn btn-primary" autocomplete="off">
+    <button type="button" id="followButton" data-loading-text="Chargement..." class="btn btn-primary" autocomplete="off">
   Suivre ce manga
 </button>
 
-<p id="userid" style="display:none"> {{ app.user.id }} </p>
-<p id="mangaid" style="display:none"> {{ manga.IdManga }} </p>
+    <p id="userid" style="display:none"> {{ app.user.id }} </p>
+    <p id="mangaid" style="display:none"> {{ manga.IdManga }} </p>
 
 </div> #}
 
 <body class="background">
-    <section>
-      <div class="container-fluid row">
-        <div class="col col-md-8 col-md-offset-2" style="background-color: white">
-          <img id="prochainement" src="img/cover/berserk.jpg" alt="">
-          <img id="prochainement" src="img/cover/black-clover.jpg" alt="">
-          <img id="prochainement" src="img/cover/bleach.jpg" alt="">
-          <img id="prochainement" src="img/cover/boruto.jpg" alt="">
-          <img id="prochainement" src="img/cover/detective-conan.jpg" alt="">
-          <div class="col col-md-8 col-md-offset-2">
-            <div class="" style="background-color: white">
-              <h3 style="text-align: center;">Suggestions</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+
     <hr class="">
     <section class="backgroundfiche">
-      <div id="titredescription" class="container-fluid row" style=" margin-bottom: 5%;">
-        <div class="col col-md-12">
-          <h1 style="display: inline;">{{ manga.NameManga}}</h1>
-          <button id="button" type="button" class="btn btn-success btn-lg">Suivre</button>
+        <div id="titredescription" class="container-fluid row" style=" margin-bottom: 5%;">
+            <div class="col col-md-12">
+                <h1 style="display: inline;">{{ manga.nameManga}}</h1>
+                <button id="button" type="button" class="btn btn-success btn-lg">Suivre</button>
+            </div>
         </div>
-      </div>
-      <div class="container-fluid row" style=" margin-bottom: 5%; padding-bottom: 5%;">
-        <div class="col col-md-3">
-          <img id="coverfiche" src="{{asset('img/cover/' ~  manga.slugManga  ~ '.jpg')}}" alt="" class="img-responsive center-block">
+        <div class="container-fluid row" style=" margin-bottom: 5%; padding-bottom: 5%;">
+            <div class="col col-md-3">
+                <img id="coverfiche" src="{{asset('img/cover/' ~  manga.slugManga  ~ '.jpg')}}" alt="" class="img-responsive center-block">
+            </div>
+            <div id="description" class="col col-md-9">
+                <h4>Auteur : <span class="motsecondaire">{{ manga.AuthorName }}</span></h4><br>
+                <h4>Date de parution : <span class="motsecondaire">{{ manga.DatePublicationManga }}</span></h4><br> {#
+                <h4>Genre : <span class="motsecondaire">{{ manga.DatePublicationManga }}</span> Action-Art martiaux-Aventure</h4><br> #} 
+                {% if manga.statusManga == 1 %}
+                <h4>Status : <span class="motsecondaire">En cours</span></h4><br> 
+                {% else %}
+                <h4>Status : <span class="motsecondaire">Terminé</span></h4><br> 
+                {% endif %}
+                <h4>Histoire :</h4><br>
+                <h5>{{ manga.DescriptionManga }}</h5>
+                <form class="form-horizontal">
+                    <fieldset>
+                        <!-- Select Basic -->
+                        <div class="form-group" style="padding-top:40px;">
+                            <label class="col-md-4 control-label" for="selectbasic">Dernier chapitre lu :</label>
+                            <div class="col-md-4">
+                                <select id="chapter" name="selectbasic" class="form-control">
+                                {# <h2>{{ chapters }}</h2> #}
+                                {% for chapter in chapters %}
+                                  <option value="{{ chapter.idChapter }}">{{ chapter.idChapter ~' '~ chapter.nameChapter }}</option>
+                                {% endfor %}
+                        </select>
+                            </div>
+                        </div>
+
+                        <!-- Button -->
+                        <div class="form-group">
+                            {# <label class="col-md-4 control-label" for="singlebutton">Dernier Lu :</label> #}
+                            <div class="col-md-4 col-md-offset-4">
+                                <button id="singlebutton" name="singlebutton" class="btn btn-primary">Valider</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
         </div>
-        <div id="description" class="col col-md-9">
-          <h4>Auteur : <span class="motsecondaire">{{ manga.AuthorName }}</span></h4><br>
-          <h4>Date de parution : <span class="motsecondaire">{{ manga.DatePublicationManga }}</span></h4><br>
-          {# <h4>Genre : <span class="motsecondaire">{{ manga.DatePublicationManga }}</span> Action-Art martiaux-Aventure</h4><br> #}
-          {% if manga.statusManga == 1 %}
-          <h4>Situation : <span class="motsecondaire">En cours</span></h4><br>
-          {% else %}
-          <h4>Situation : <span class="motsecondaire">Terminé</span></h4><br>
-          {% endif %}
-          <h4>Histoire :</h4><br>
-          <h5>{{ manga.DescriptionManga }}</h5>
+
+
+    </section>
+    {# <section>
+        <div class="container-fluid row">
+            <div class="col col-md-8 col-md-offset-2" style="background-color: white">
+                <img id="prochainement" src="../../img/cover/berserk.jpg" alt="">
+                <img id="prochainement" src="../../img/cover/black-clover.jpg" alt="">
+                <img id="prochainement" src="../../img/cover/bleach.jpg" alt="">
+                <img id="prochainement" src="../../img/cover/boruto.jpg" alt="">
+                <img id="prochainement" src="../../img/cover/detective-conan.jpg" alt="">
+                <div class="col col-md-8 col-md-offset-2">
+                    <div class="" style="background-color: white">
+                        <h3 style="text-align: center;">Suggestions</h3>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-  </section>
-<script src="/js/main.js"></script>
-{% endblock %}
+    </section> #}
+    <script src="../../js/main.js"></script>
+        {% endblock %}

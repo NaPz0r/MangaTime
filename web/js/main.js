@@ -4,6 +4,7 @@ $(document).ready(function() {
     $("#followButton").on("click", function() {
         var my_button = $(this);
         var update_type = "";
+        33333333333333333
 
         // if (my_button.hasClass('#followButton'))
         //     update_type = "Unfollow";

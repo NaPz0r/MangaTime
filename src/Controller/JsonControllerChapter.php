@@ -2,7 +2,7 @@
 
 namespace MangaTime\Controller;
 
-class jsonControllerChapter {
+class JsonControllerChapter {
     
         public function ajoutChapters()
         {

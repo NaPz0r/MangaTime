@@ -25,51 +25,8 @@ class MangaDAO extends DAO
         }
         return $mangas;
     }
-    //test
-    /**
-     * Creates an Article object based on a DB row.
-     *
-     * @param array $row The DB row containing Article data.
-     * @return \MicroCMS\Domain\Article
-     */
-    private function buildDomainObject(array $row) {
-        $manga = new Manga();
-        $manga->setIdManga($row['Id_Manga']);
-        $manga->setNameManga($row['Name_Manga']);
-        $manga->setDatePublicationManga($row['DatePublication_Manga']);
-        $manga->setDescriptionManga(str_replace("&#039;", "'",$row['Description_Manga']));
-        $manga->setStatusManga($row['Status_Manga']);
-        $manga->setSlugManga($row['Slug_Manga']);
-        $manga->setAuthorName($row['Name_Author']);        
-        return $manga;
-    }
 
-    public function addManga(Manga $manga){
-        $mangaData = array(
-            'manga_name' => $manga->getNameManga(),
-            'manga_datepublication' => $manga->getDatePublicationManga(),
-            'manga_descriptionmanga' => $manga->getDescriptionManga(),
-            'manga_statusmanga' => $manga->getStatusManga()
-        );
-
-        $this->getDb()->insert('mangas', $mangaData);
-        $id = $this->getDb()->lastInsertId();
-        $manga->setIdManga($id);
-    
-    }
-
-    public function findOneManga($userid){
-
-        $sql = "SELECT * FROM `users_has_mangas` WHERE users_has_mangas.Users_Id_User = ?";
-        $result = $this->getDb()->fetchAssoc($sql, array($userid));
-        foreach ($result as $row) {
-            $mangasId = intval($result['Mangas_Id_Manga']);
-            find($mangasId);
-        }
-        return true;
-    }
-
-        /**
+            /**
      * Returns an article matching the supplied id.
      *
      * @param integer $id
@@ -84,6 +41,51 @@ class MangaDAO extends DAO
         else
             throw new \Exception("No manga matching id " . $id);
     }
+
+    public function findAllFromUser($userid){
+        $sql = "SELECT `Id_Manga`,`Name_Manga`,`DatePublication_Manga`,`Description_Manga`,`Status_Manga`,`Slug_Manga`,`Name_Author` FROM mangas, users_has_mangas, authors WHERE mangas.Id_Manga = users_has_mangas.Mangas_Id_Manga AND mangas.Authors_Id_Author = authors.Id_Author AND users_has_mangas.Users_Id_User = $userid";
+        $result = $this->getDb()->fetchAll($sql);
+        $mangas = array();
+
+        foreach ($result as $row) {
+            $mangasId = $row['Id_Manga'];
+            $mangas[$mangasId] = $this->buildDomainObject($row);
+        }
+        return $mangas;
+    }
+
+
+    /**
+     * Creates an Article object based on a DB row.
+     *
+     * @param array $row The DB row containing Article data.
+     * @return \MicroCMS\Domain\Article
+     */
+    private function buildDomainObject(array $row) {
+        $manga = new Manga();
+        $manga->setIdManga($row['Id_Manga']);
+        $manga->setNameManga($row['Name_Manga']);
+        $manga->setDatePublicationManga($row['DatePublication_Manga']);
+        $manga->setDescriptionManga(htmlspecialchars_decode($row['Description_Manga'], ENT_QUOTES));
+        $manga->setStatusManga($row['Status_Manga']);
+        $manga->setSlugManga($row['Slug_Manga']);
+        $manga->setAuthorName($row['Name_Author']);        
+        return $manga;
+    }
+
+    // public function addManga(Manga $manga){
+    //     $mangaData = array(
+    //         'manga_name' => $manga->getNameManga(),
+    //         'manga_datepublication' => $manga->getDatePublicationManga(),
+    //         'manga_descriptionmanga' => $manga->getDescriptionManga(),
+    //         'manga_statusmanga' => $manga->getStatusManga()
+    //     );
+
+    //     $this->getDb()->insert('mangas', $mangaData);
+    //     $id = $this->getDb()->lastInsertId();
+    //     $manga->setIdManga($id);
+    
+    // }
 
     public function save(Manga $manga) {
         $mangaData = array(

@@ -1,0 +1,86 @@
+{% extends "layout.html.twig" %} {% block content %}
+
+<div class="well">
+    <form class="form-signin form-horizontal" role="form" method="post" id="formregister">
+        <div class="form-group">
+            <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <input type="text" name="_mail" id="mail" class="form-control" placeholder="Saisissez votre mail" required autofocus>
+                <span id="msg_mail"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <input type="password" name="_password" id="password" class="form-control" placeholder="Saisissez votre password" required>
+                <div class="help-block">Minimum de 6 caractères</div>
+                <span id="msg_password"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <input type="password" name="_passwordconfirm" id="passwordconfirm" class="form-control" placeholder="Confirmez votre password" required>
+                <span id="msg_passwordconfirm"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <input type="text" name="_name" id="name" class="form-control" placeholder="Saisissez votre nom" required>
+                <span id="msg_name"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <input type="text" name="_nickname" id="nickname" class="form-control" placeholder="Saisissez votre pseudo" required>
+                <span id="msg_nickname"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-log-in"></span> Valider</button>
+                <span id="msg_ok1"></span>
+            </div>
+        </div>
+    </form>
+</div>
+{#
+<form method="POST" id="register">
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-6">
+                <input name="nom" class="form-control" type="text" aria-describedby="nameHelp" placeholder="Entrez votre nom" id="nom">
+                <span id="msg_nom"></span>
+            </div>
+            <div class="col-md-6">
+                <input name="telephone" class="form-control" type="tel" placeholder="Entrez votre numero de téléphone" id="telephone" pattern="[0-9]{10}">
+                <span id="msg_tel"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-6">
+            <input class="form-control" type="email" placeholder="Enter email" name="email" id="email">
+            <span id="msg_email"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-6">
+                <input class="form-control" type="password" placeholder="Mot de passe" name="_password" id="password">
+            </div>
+            <div class="col-md-6">
+                <input class="form-control" type="password" placeholder="Confirmez le mot de passe" name="password2" id="password2">
+                <span id="msg_confirme2"></span>
+            </div>
+        </div>
+    </div>
+    <div class="-col-md-6">
+        <input class="btn btn-success" type="submit" value="Valider">
+        <span id="msg_confirme1"></span>
+    </div>
+</form> #}
+</div>
+</div>
+</div>
+</div>
+
+<script src="js/password.js"></script>
+{% endblock content %} {% block footer %} {% endblock footer %}

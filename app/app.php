@@ -49,7 +49,7 @@ $app->register(new Silex\Provider\FormServiceProvider());
 $app->register(new Silex\Provider\LocaleServiceProvider());
 $app->register(new Silex\Provider\TranslationServiceProvider());
 
-// Register services
+// Services DAO enregistrés
 $app['dao.manga'] = function ($app) {
     return new MangaTime\DAO\MangaDAO($app['db']);
 };
@@ -59,6 +59,7 @@ $app['dao.user'] = function ($app) {
 $app['dao.author'] = function ($app) {
     return new MangaTime\DAO\AuthorDAO($app['db']);
 };
+$app['dao.chapter'] = function ($app) {
+    return new MangaTime\DAO\ChapterDAO($app['db']);
+};
 
-$app->get('/ajoutChapters', "MangaTime\Controller\jsonControllerChapters::ajoutChapters")
-    ->bind('ajoutChapters');
