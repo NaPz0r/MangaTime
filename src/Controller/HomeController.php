@@ -39,8 +39,18 @@ class HomeController{
     public function mangaAction($id, Application $app){
         $manga = $app['dao.manga']->find($id);
         $chapters = $app['dao.chapter']->findChapters($id);
+        // var_dump($app['user']->getId());
+        $retour = $app['dao.manga']->follow($id, $app['user']->getId());
         // $follow = $app['dao.manga']->follow($id);
-        return $app['twig']->render('manga.html.twig', array('manga' => $manga, 'chapters' => $chapters));
+        return $app['twig']->render('manga.html.twig', array('manga' => $manga, 'chapters' => $chapters, 'retour' => $retour));
+    }
+
+    public function saveFollow(Request $request, Application $app){
+        // var_dump($request);
+        // $userid = $_GET['userid'];
+        // $mangaid = $_GET['mangaid'];
+        // var_dump($userid);
+        $result = $app['dao.manga']->followManga($request);
     }
     
 }

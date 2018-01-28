@@ -30,48 +30,16 @@ $app->get('/allmanga', "MangaTime\Controller\HomeController::mangaAffiche")
 $app->get('/manga/{id}', "MangaTime\Controller\HomeController::mangaAction")
     ->bind('manga');
 
+$app->get('/recherche', "MangaTime\Controller\MangaRecherche::recherche")
+    ->bind('recherche');
+
+$app->get('/savefollow', "MangaTime\Controller\HomeController::saveFollow")
+    ->bind('savefollow');
 
 
 // Routes d'administration
-
 $app->get('/admin', "MangaTime\Controller\AdminController::indexAction")
     ->bind('admin');
-
-
-
-// Ajouts d'auteurs / mangas / chapitres
-$app->get('/ajoutAuthors', "MangaTime\Controller\JsonControllerAuthor::ajoutAuteurs")
-    ->bind('ajoutAuthors');
-
-$app->get('/ajoutMangas', "MangaTime\Controller\JsonControllerManga::ajoutMangas")
-    ->bind('ajoutMangas');
-
-$app->get('/ajoutChapters', "MangaTime\Controller\JsonControllerChapter::ajoutChapters")
-    ->bind('ajoutChapters');
-
-
-$app->match('/admin/manga/add', function(Request $request) use ($app) {
-    // if (isset($_POST)){
-    //     $error = 0;
-    //     if(strlen($_POST['manganame']) < 3){
-    //         $error++;
-    //     }
-    //     if(strlen($_POST['mangadate']) != 4){
-    //         $error++;
-    //     }
-    //     if ($error = 0){
-    //         $manga = new Manga();
-    //         $manga = $app['dao.manga']->
-    //     }
-    // }
-    if ($mangaForm->isSubmitted() && $mangaForm->isValid()) {
-        $app['dao.manga']->addManga($manga);
-        $app['session']->getFlashBag()->add('success', 'The manga was successfully created.');
-    }
-    return $app['twig']->render('manga_form.html.twig', array(
-        'title' => 'New manga',
-        'mangaForm' => $mangaForm->createView()));
-})->bind('admin_manga_add');
 
 // Edit an existing manga
 $app->match('/admin/manga/{id}/edit', function($id, Request $request) use ($app) {
@@ -94,10 +62,12 @@ $app->get('/admin/manga/{id}/delete', function($id, Request $request) use ($app)
 })->bind('admin_manga_delete');
 
 
+// Ajouts d'auteurs / mangas / chapitres grâce à l'API
+$app->get('/ajoutAuthors', "MangaTime\Controller\JsonControllerAuthor::ajoutAuteurs")
+    ->bind('ajoutAuthors');
 
-// Home page
+$app->get('/ajoutMangas', "MangaTime\Controller\JsonControllerManga::ajoutMangas")
+    ->bind('ajoutMangas');
 
-
-// // Login form
-// $app->get('/login', "app\Controller\HomeController::loginAction")
-//     ->bind('login');
+$app->get('/ajoutChapters', "MangaTime\Controller\JsonControllerChapter::ajoutChapters")
+    ->bind('ajoutChapters');

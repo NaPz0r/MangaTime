@@ -24,10 +24,12 @@
 
     <hr class="">
     <section class="backgroundfiche">
+        <div id="iduser" style="display:none">{{ app.user.id }}</div>
+        <div id="idmanga" style="display:none">{{ manga.idManga}}</div>
         <div id="titredescription" class="container-fluid row" style=" margin-bottom: 5%;">
             <div class="col col-md-12">
                 <h1 style="display: inline;">{{ manga.nameManga}}</h1>
-                <button id="button" type="button" class="btn btn-success btn-lg">Suivre</button>
+                <button id="{{'button'~ retour}}" type="button" class="btn btn-success btn-lg">Suivre</button><h3></h3>
             </div>
         </div>
         <div class="container-fluid row" style=" margin-bottom: 5%; padding-bottom: 5%;">
@@ -37,19 +39,21 @@
             <div id="description" class="col col-md-9">
                 <h4>Auteur : <span class="motsecondaire">{{ manga.AuthorName }}</span></h4><br>
                 <h4>Date de parution : <span class="motsecondaire">{{ manga.DatePublicationManga }}</span></h4><br> {#
-                <h4>Genre : <span class="motsecondaire">{{ manga.DatePublicationManga }}</span> Action-Art martiaux-Aventure</h4><br> #} 
+                <h4>Genre : <span class="motsecondaire">{{ manga.DatePublicationManga }}</span> Action-Art martiaux-Aventure</h4><br> #}
+                <h4>Auteur : <span class="motsecondaire">{{ manga.authorName }}</span></h4> <br>
                 {% if manga.statusManga == 1 %}
                 <h4>Status : <span class="motsecondaire">En cours</span></h4><br> 
                 {% else %}
                 <h4>Status : <span class="motsecondaire">Terminé</span></h4><br> 
                 {% endif %}
-                <h4>Histoire :</h4><br>
-                <h5>{{ manga.DescriptionManga }}</h5>
+                <h4>Histoire : <span class="motsecondaire">{{ manga.DescriptionManga }}</span></h4><br> 
+                
+                
                 <form class="form-horizontal">
                     <fieldset>
                         <!-- Select Basic -->
                         <div class="form-group" style="padding-top:40px;">
-                            <label class="col-md-4 control-label" for="selectbasic">Dernier chapitre lu :</label>
+                            <label class="col-md-4 control-label" for="selectbasic">Chapitres :</label>
                             <div class="col-md-4">
                                 <select id="chapter" name="selectbasic" class="form-control">
                                 {# <h2>{{ chapters }}</h2> #}
@@ -92,4 +96,5 @@
         </div>
     </section> #}
     <script src="../../js/main.js"></script>
+    <script src="../../js/follow.js"></script>
         {% endblock %}

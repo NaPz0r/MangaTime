@@ -54,6 +54,29 @@ class MangaDAO extends DAO
         return $mangas;
     }
 
+    public function follow($id, $userid){
+        $sql = "SELECT * FROM `users_has_mangas` WHERE `Users_Id_User` = $userid AND `Mangas_Id_Manga` = $id";
+        $row = $this->getDb()->fetchAssoc($sql, array($id));
+        if ($row)
+            return "follow";
+        else
+            return "unfollow";
+    }
+
+    public function followManga(Request $request){
+
+        $userid  = $request->get('userid');
+        $mangaid = $request->get('mangaid');
+        var_dump($mangaid);
+        $sql1 = $this->getDb()->insert('users_has_mangas', array("Users_Id_User" => $userid, "Mangas_Id_Manga" => $mangaid));
+        $sql2 = "SELECT * FROM `users_has_mangas` WHERE `Users_Id_User` = $userid AND `Mangas_Id_Manga` = $mangaid";
+        $row = $this->getDb()->fetchAssoc($sql2, array($id));
+        if ($row)
+            return ($data=true);
+        else
+            return ($data=false);
+    }
+
 
     /**
      * Creates an Article object based on a DB row.
